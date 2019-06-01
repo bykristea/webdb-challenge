@@ -55,18 +55,11 @@ server.get('/api/projects/:id', (req, res) => {
     const {id} = req.params;
     db('Projects').where('id', id)
     .then(projectId => {
-        const project_obj = projectId
-        console.log('Project Obj One', project_obj)
         db('Actions')
     .then(actions => {
-            console.log('Type Id', typeof id)
-            console.log('Type action Id', typeof actions[0].id)
             const project_actions = actions.filter(action => action.project_id === Number(id))
-            console.log('Actions', actions)
-            console.log('Project Actions', project_actions)
-            project_obj[0]['actions'] = project_actions
-            console.log('Project Obj Two', project_obj)
-            res.json(project_obj)
+            projectId[0]['actions'] = project_actions
+            res.json(projectId)
         })
     .catch(err => {res.status(500).json({err: 'action could not be retrieved'})})
     })
