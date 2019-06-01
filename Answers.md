@@ -16,4 +16,4 @@ A: Foreign Key
 
 
 4. What do we need in order to have a _many to many_ relationship between two tables.
-A: Multiple records in one table are related to multiple records in another table. 
+A: Multiple records in one table are related to multiple records in another table. Create a Join Table with the shared info. 
