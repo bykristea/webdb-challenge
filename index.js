@@ -66,6 +66,46 @@ server.get('/api/projects/:id', (req, res) => {
     .catch(err => {res.status(500).json({message: 'project could not be retrieved'})})
 })
 
+//get actions
+server.get('/api/actions', (req, res) => {
+    db('Actions')
+    .then(actionId => {res.json(actionId)})
+    .catch(err => {res.status(500).json({message: 'there was an error'})})
+})
+
+//Update project/:id
+server.put('/api/projects/:id', async (req, res) => {
+    const changes = req.body;
+  
+    if (changes.name || changes.description || changes.completed) {
+      try {
+        const updated = await Projects.update(req.params.id, req.params.description, req.params.completed, changes);
+        if (updated) {
+          res.status(200).json(updated);
+        } else {
+          res.status(404).json({
+            message: 'That project does not exist',
+          });
+        }
+      } catch (error) {
+        res
+          .status(500)
+          .json({ message: 'We ran into an error updating the project' });
+      }
+    } else {
+      res.status(400).json({
+        message: 'Please provide the name of the project',
+      });
+    }
+  });
+
+//Update actions/:id
+
+//Delete action/:id
+
+//Delete Project/:id
+
+
 server.listen(PORT, () =>{
     console.log(`\nAPI running on port ${PORT}\n`)
 })
