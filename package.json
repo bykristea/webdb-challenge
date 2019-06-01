@@ -13,7 +13,7 @@
     "helmet": "^3.18.0",
     "knex": "^0.17.2",
     "sqlite3": "^4.0.8"
-  }
+  },
 
   "devDependencies": {
     "knex-cleaner": "^1.1.4",
